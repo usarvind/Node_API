@@ -7,7 +7,7 @@ module.exports = function(model) {
                var checkUserDeleteOrNot = userLoginData.dataValues.is_deleted;
                if(checkUserDeleteOrNot == '1'){
                         delete req.session.user;
-                        req.flash('error',"You are deleted in admin side. Please contact to admin.");
+                        req.flash('error',"You are deleted ");
                         res.redirect('/');
                }  else {
                     next();
@@ -24,7 +24,7 @@ module.exports = function(model) {
                var checkUserDeleteOrNot = userLoginData.dataValues.is_deleted;
                if(checkUserDeleteOrNot == '1'){
                         delete req.session.user;
-                        req.flash('error',"You are deleted in admin side. Please contact to admin.");
+                        req.flash('error',"erro");
                         res.redirect('/');
               } else {
                     req.flash('error',"You have already login.");
