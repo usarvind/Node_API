@@ -1,5 +1,5 @@
 module.exports = function (Sequelize, Schema) {
 	var module = {};
-	//module.User = require('./user')(Sequelize, Schema);
+	module.Weather = require('./json_data')(Sequelize, Schema);
 	return module;
 }

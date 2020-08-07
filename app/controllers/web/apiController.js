@@ -7,6 +7,11 @@ module.exports = function(model){
 			let currentDay= dateFormat(now,'dd');
             helper.primeDate(currentDay, function(flag){
 				if(flag){
+					let data={
+						json_data:JSON.stringify(jsonData),
+					}
+					// await model.Weather.create(data); // blocking  
+					model.Weather.create(data); //async non blocking store data in db
 					return response.json({'status':'success','message':'Done','result':jsonData});
 				}
 				return response.json({'status':'fail','message':'Date is not prime , so not data'});

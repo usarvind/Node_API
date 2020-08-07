@@ -7,9 +7,6 @@ var AES = CryptoJS.AES;
 
 //////////////////////////////////////////////////////////////////////////
 
-
-
-
 module.exports.primeDate = function(day, cb){
     let d = parseInt(day);
     for(let i =2 ;i< d ;i++){
@@ -19,7 +16,6 @@ module.exports.primeDate = function(day, cb){
     }
    return cb(true);
 }
-
 
 
 ////////////////////////////////////////////////////////////////////////
