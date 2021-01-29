@@ -1,39 +1,25 @@
 module.exports = function(model) {
     var module = {};
 
-    module.login = function(req, res, next){
-        if (req.session.user) {
-               var userLoginData = req.session.user;
-               var checkUserDeleteOrNot = userLoginData.dataValues.is_deleted;
-               if(checkUserDeleteOrNot == '1'){
-                        delete req.session.user;
-                        req.flash('error',"You are deleted ");
-                        res.redirect('/');
-               }  else {
-                    next();
-               }
-        } else {
-            req.flash('error',"Please login");
-            res.redirect('/');
-        }
+    module.checkValid = async function(request, response, next){
+      let token = request.headers.token;
+      let private_key = request.headers.private_key;
+      //console.log("+++++++++++++ : ",request.headers)
+      if(!token){
+        return response.json({'status':false,'message':'Please send the token in api headers'});
+      }
+      if(!private_key){
+        return response.json({'status':false,'message':'Please send match token in api headers'});
+      }
+      let res = await helper.matchToken(token,private_key);
+      if(!res){
+        return response.json({'status':false,'message':'Api token not match'});
+      }
+      //console.log(" token token : "+res);
+      next();
     };
 
-    module.isLogin = function(req, res, next){
-        if (req.session.user) {
-               var userLoginData = req.session.user;
-               var checkUserDeleteOrNot = userLoginData.dataValues.is_deleted;
-               if(checkUserDeleteOrNot == '1'){
-                        delete req.session.user;
-                        req.flash('error',"erro");
-                        res.redirect('/');
-              } else {
-                    req.flash('error',"You have already login.");
-                    res.redirect('/');
-            }            
-        } else {
-        	next();
-        }
-    };  
+    
 
     return module;
 }    
