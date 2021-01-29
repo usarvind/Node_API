@@ -1,10 +1,8 @@
 module.exports = function(model){
 	var module = {};
 
-
-
 	//Start: Validation for login
-	module.login = function(req, res, next){
+	//module.login = function(req, res, next){
 		
 		// req.checkBody('email', 'Email Address is required').notEmpty();
 		// req.checkBody('password', 'Password is required').notEmpty();
@@ -17,8 +15,8 @@ module.exports = function(model){
 	   	// }else{	   		
 		// 	next();
 	   	// };
-	    next();
-	};
+	//     next();
+	// };
 	//End: Validation for login
 
 	return module;	
